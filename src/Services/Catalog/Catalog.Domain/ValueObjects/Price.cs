@@ -10,7 +10,6 @@ public class Price : ValueObject
 
     public Price(decimal amount, Currency currency)
     {
-        Ensure.Argument.NotNull(amount, nameof(amount));
         Ensure.Argument.NotNull(currency, nameof(currency));
         Amount = amount;
         Currency = currency;

@@ -1,17 +1,12 @@
 ﻿using Catalog.Domain.Entities;
 using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.IdGenerators;
 
-namespace Catalog.Infrastructure.Configurations
+namespace Catalog.Infrastructure.Configurations;
+
+internal sealed class ProductConfiguration : EntityDbConfiguration<Product>
 {
-    internal sealed class ProductConfiguration : IDbConfiguration<Product>
+    public override void Map(BsonClassMap<Product> cm)
     {
-        public void Register()
-        {
-            BsonClassMap.RegisterClassMap<Product>(cm => {
-                cm.AutoMap();
-                cm.MapIdField("id").SetIdGenerator(GuidGenerator.Instance);
-            });
-        }
+        cm.AutoMap();
     }
 }

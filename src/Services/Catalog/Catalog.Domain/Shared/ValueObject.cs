@@ -1,6 +1,6 @@
 ﻿namespace Catalog.Domain.Shared
 {
-    public abstract class ValueObject
+    public abstract class ValueObject : IEquatable<ValueObject>
     {
         protected static bool EqualOperator(ValueObject left, ValueObject right)
         {
@@ -19,30 +19,14 @@
 
         protected abstract IEnumerable<object> GetAtomicValues();
 
+        public bool Equals(ValueObject? other)
+        {
+            return other is not null && AreEqual(other);
+        }
+
         public override bool Equals(object? obj)
         {
-            if (obj == null || obj.GetType() != GetType())
-            {
-                return false;
-            }
-
-            var other = (ValueObject)obj;
-            var thisValues = GetAtomicValues().GetEnumerator();
-            var otherValues = other.GetAtomicValues().GetEnumerator();
-
-            while (thisValues.MoveNext() && otherValues.MoveNext())
-            {
-                if (thisValues.Current is null ^ otherValues.Current is null)
-                {
-                    return false;
-                }
-
-                if (thisValues.Current?.Equals(otherValues.Current) == false)
-                {
-                    return false;
-                }
-            }
-            return !thisValues.MoveNext() && !otherValues.MoveNext();
+            return obj != null && obj is ValueObject other && AreEqual(other);
         }
 
         public override int GetHashCode()
@@ -56,5 +40,8 @@
         {
             return (ValueObject)MemberwiseClone();
         }
+
+        private bool AreEqual(ValueObject obj)
+            => GetAtomicValues().SequenceEqual(obj.GetAtomicValues());
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using Catalog.API.Http;
+using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -90,5 +92,13 @@ internal sealed class CatalogProblemDetailsFactory : ProblemDetailsFactory
         {
             problemDetails.Extensions["traceId"] = traceId;
         }
+
+        var errors = httpContext?.Items["errors"] as List<Error>;
+
+        if (errors is not null)
+        {
+            problemDetails.Extensions.Add(HttpContextItemKeys.Errors, errors.Select(e => e.Code));
+        }
+
     }
 }
