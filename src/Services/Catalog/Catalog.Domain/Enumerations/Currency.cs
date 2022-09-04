@@ -16,5 +16,5 @@ public sealed class Currency : Enumeration
         _currencies.Add(id, this);
     }
 
-    public static IReadOnlyCollection<Currency>? Values => _currencies.Values as IReadOnlyCollection<Currency>;
+    public static IReadOnlyCollection<Currency> Values => _currencies.Values as IReadOnlyCollection<Currency>;
 }

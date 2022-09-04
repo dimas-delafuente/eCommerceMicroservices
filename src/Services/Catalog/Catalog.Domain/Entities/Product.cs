@@ -21,4 +21,14 @@ public class Product : Entity
         ImageFile = imageFile;
         Price = price;
     }
+
+    public static Product Create(Guid id, string name, string category, string summary, string description, string imageFile, Price price)
+    {
+        return new Product(id, name, category, summary, description, imageFile, price);
+    }
+
+    public static Product Create(string name, string category, string summary, string description, string imageFile, Price price)
+    {
+        return new Product(Guid.NewGuid(), name, category, summary, description, imageFile, price);
+    }
 }

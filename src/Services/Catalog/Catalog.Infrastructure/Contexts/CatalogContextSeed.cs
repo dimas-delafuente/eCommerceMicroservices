@@ -17,8 +17,7 @@ internal class CatalogContextSeed
 
     private static IEnumerable<Product> GetProducts()
     {
-        yield return new Product(
-            Guid.NewGuid(),
+        yield return Product.Create(
             "IPhone X",
             "Smart Phone",
             "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
@@ -27,8 +26,7 @@ internal class CatalogContextSeed
             new Price(950.00M, Currency.Euro)
             );
 
-        yield return new Product(
-            Guid.NewGuid(),
+        yield return Product.Create(
             "Samsung 10",
             "Smart Phone",
             "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
@@ -37,8 +35,7 @@ internal class CatalogContextSeed
             new Price(840.00M, Currency.Euro)
             );
 
-        yield return new Product(
-            Guid.NewGuid(),
+        yield return Product.Create(
             "Huawei Plus",
             "Smart Phone",
             "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
@@ -47,8 +44,7 @@ internal class CatalogContextSeed
             new Price(650.00M, Currency.Euro)
             );
 
-        yield return new Product(
-            Guid.NewGuid(),
+        yield return Product.Create(
             "Xiaomi Mi 9",
             "White Appliances",
             "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
@@ -57,8 +53,7 @@ internal class CatalogContextSeed
             new Price(470.00M, Currency.Euro)
             );
 
-        yield return new Product(
-            Guid.NewGuid(),
+        yield return Product.Create(
             "HTC U11+ Plus",
             "Smart Phone",
             "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
@@ -67,8 +62,7 @@ internal class CatalogContextSeed
             new Price(380.00M, Currency.Euro)
             );
 
-        yield return new Product(
-            Guid.NewGuid(),
+        yield return Product.Create(
             "LG G7 ThinQ",
             "Home Kitchen",
             "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
