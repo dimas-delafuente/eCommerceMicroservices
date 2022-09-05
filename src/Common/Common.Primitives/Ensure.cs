@@ -1,4 +1,4 @@
-﻿namespace Catalog.Domain.Shared;
+﻿namespace Common.Primitives;
 
 /// <summary>
 /// Will throw exceptions when conditions are not satisfied.

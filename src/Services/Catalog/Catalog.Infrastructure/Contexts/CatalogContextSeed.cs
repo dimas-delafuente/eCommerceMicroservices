@@ -1,6 +1,6 @@
 ﻿using Catalog.Domain.Entities;
-using Catalog.Domain.Enumerations;
-using Catalog.Domain.ValueObjects;
+using Common.Primitives.Enumerations;
+using Common.Primitives.ValueObjects;
 using MongoDB.Driver;
 
 namespace Catalog.Infrastructure.Contexts;

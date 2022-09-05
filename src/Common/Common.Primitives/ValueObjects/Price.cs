@@ -1,7 +1,6 @@
-﻿using Catalog.Domain.Enumerations;
-using Catalog.Domain.Shared;
+﻿using Common.Primitives.Enumerations;
 
-namespace Catalog.Domain.ValueObjects;
+namespace Common.Primitives.ValueObjects;
 
 public class Price : ValueObject
 {

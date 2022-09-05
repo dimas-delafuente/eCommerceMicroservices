@@ -1,8 +1,8 @@
 ﻿using Catalog.Application.Abstractions.Commands;
 using Catalog.Domain.Abstractions.Repositories;
 using Catalog.Domain.Entities;
-using Catalog.Domain.Shared;
-using Catalog.Domain.ValueObjects;
+using Common.Primitives;
+using Common.Primitives.ValueObjects;
 using ErrorOr;
 
 namespace Catalog.Application.Features.Products.Commands.CreateProduct;

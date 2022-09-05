@@ -10,4 +10,8 @@
     <PackageReference Include="ErrorOr" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common.Primitives\Common.Primitives.csproj" />
+  </ItemGroup>
+
 </Project>

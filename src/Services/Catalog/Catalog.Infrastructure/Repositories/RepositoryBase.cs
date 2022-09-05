@@ -1,5 +1,5 @@
-﻿using Catalog.Domain.Shared;
-using Catalog.Infrastructure.Contexts;
+﻿using Catalog.Infrastructure.Contexts;
+using Common.Primitives;
 
 namespace Catalog.Infrastructure.Repositories;
 

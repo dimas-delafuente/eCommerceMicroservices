@@ -1,7 +1,7 @@
 ﻿using Catalog.Application.Abstractions.Commands;
 using Catalog.Domain.Abstractions.Repositories;
-using Catalog.Domain.Shared;
 using Catalog.Domain.Shared.Errors;
+using Common.Primitives;
 using ErrorOr;
 
 namespace Catalog.Application.Features.Products.Commands.DeleteProduct;

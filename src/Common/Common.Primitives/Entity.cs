@@ -1,4 +1,4 @@
-﻿namespace Catalog.Domain.Shared;
+﻿namespace Common.Primitives;
 
 public abstract class Entity : IEquatable<Entity>
 {

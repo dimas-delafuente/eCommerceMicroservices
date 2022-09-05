@@ -1,6 +1,4 @@
-﻿using Catalog.Domain.Shared;
-
-namespace Catalog.Domain.Enumerations;
+﻿namespace Common.Primitives.Enumerations;
 
 public sealed class Currency : Enumeration
 {

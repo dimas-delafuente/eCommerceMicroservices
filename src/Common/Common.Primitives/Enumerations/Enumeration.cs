@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Catalog.Domain.Shared;
+namespace Common.Primitives.Enumerations;
 
 public abstract class Enumeration : IComparable
 {

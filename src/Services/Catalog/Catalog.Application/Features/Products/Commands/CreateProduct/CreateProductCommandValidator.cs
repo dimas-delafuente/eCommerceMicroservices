@@ -1,4 +1,4 @@
-﻿using Catalog.Domain.Enumerations;
+﻿using Common.Primitives.Enumerations;
 using FluentValidation;
 
 namespace Catalog.Application.Features.Products.Commands.CreateProduct;

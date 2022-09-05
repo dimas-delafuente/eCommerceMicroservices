@@ -1,4 +1,4 @@
-﻿using Catalog.Domain.Shared;
+﻿using Common.Primitives;
 
 namespace Catalog.Domain.Abstractions.Repositories
 {

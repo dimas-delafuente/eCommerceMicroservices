@@ -1,4 +1,4 @@
-﻿using Catalog.Domain.Shared;
+﻿using Common.Primitives;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.IdGenerators;
 

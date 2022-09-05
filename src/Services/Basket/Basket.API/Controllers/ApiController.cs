@@ -1,9 +1,9 @@
-﻿using Catalog.API.Http;
+﻿using Basket.API.Http;
 using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace Catalog.API.Controllers;
+namespace Basket.API.Controllers;
 
 [ApiController]
 public class ApiController : ControllerBase

@@ -1,5 +1,5 @@
-﻿using Catalog.Domain.Shared;
-using Catalog.Domain.ValueObjects;
+﻿using Common.Primitives;
+using Common.Primitives.ValueObjects;
 
 namespace Catalog.Domain.Entities;
 
