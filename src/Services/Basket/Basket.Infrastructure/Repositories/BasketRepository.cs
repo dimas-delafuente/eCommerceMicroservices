@@ -36,7 +36,6 @@ internal class BasketRepository : IBasketRepository
     public async Task<Domain.Entities.Basket> UpdateBasketAsync(Domain.Entities.Basket basket)
     {
         Ensure.NotNull(basket, nameof(basket));
-
         await _redisCache.SetStringAsync(basket.Id.ToString(), JsonSerializer.Serialize(basket));
         return await GetBasketAsync(basket.Id);
     }

@@ -1,3 +1,3 @@
 ﻿namespace Basket.Application.Contracts;
 
-public sealed record UpdateBasketCommand(Guid BasketId, BasketItemDto[] Items);
+public sealed record CreateBasketCommand(Guid BasketId, BasketItemDto[] Items);

@@ -17,7 +17,7 @@ public class BasketController : ApiController
         _basketManager = basketManager;
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id}", Name = "GetBasket")]
     [ProducesResponseType(typeof(Domain.Entities.Basket), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
     public async Task<IActionResult> GetBasket([FromRoute] Guid id)
@@ -26,7 +26,7 @@ public class BasketController : ApiController
         return Result(result);
     }
 
-    [HttpGet("{id}")]
+    [HttpDelete("{id}", Name = "DeleteBasket")]
     [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
     public async Task<IActionResult> DeleteBasket([FromRoute] Guid id)
@@ -35,12 +35,12 @@ public class BasketController : ApiController
         return Ok();
     }
 
-    [HttpPut("{id}")]
+    [HttpPost(Name = "CreateBasket")]
     [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
-    public async Task<IActionResult> UpdateBasket([FromBody] UpdateBasketCommand command)
+    public async Task<IActionResult> CreateBasket([FromBody] CreateBasketCommand command)
     {
-        var result = await _basketManager.UpdateBasket(command);
+        var result = await _basketManager.SetBasket(command);
         return Result(result);
     }
 }
