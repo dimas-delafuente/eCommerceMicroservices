@@ -1,5 +1,5 @@
-﻿using Catalog.Application.Abstractions.Commands;
-using Catalog.Domain.Entities;
+﻿using Catalog.Domain.Entities;
+using Common.Primitives.Commands;
 
 namespace Catalog.Application.Features.Products.Commands.CreateProduct;
 

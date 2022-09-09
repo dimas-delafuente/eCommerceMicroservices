@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Catalog.Application.Abstractions.Queries;
 using Catalog.Application.Behaviors;
 using FluentValidation;
 using MediatR;
@@ -11,7 +10,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddMediatR(typeof(IQueryResult));
+        services.AddMediatR(typeof(ServiceCollectionExtensions));
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());

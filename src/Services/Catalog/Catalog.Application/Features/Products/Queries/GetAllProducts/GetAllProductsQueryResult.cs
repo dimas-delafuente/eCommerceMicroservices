@@ -1,5 +1,5 @@
-﻿using Catalog.Application.Abstractions.Queries;
-using Catalog.Domain.Entities;
+﻿using Catalog.Domain.Entities;
+using Common.Primitives.Queries;
 
 namespace Catalog.Application.Features.Products.Queries.GetAllProducts;
 

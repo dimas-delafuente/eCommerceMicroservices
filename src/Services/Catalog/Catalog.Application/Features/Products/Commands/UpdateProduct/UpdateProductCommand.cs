@@ -1,4 +1,4 @@
-﻿using Catalog.Application.Abstractions.Commands;
+﻿using Common.Primitives.Commands;
 using ErrorOr;
 
 namespace Catalog.Application.Features.Products.Commands.UpdateProduct;

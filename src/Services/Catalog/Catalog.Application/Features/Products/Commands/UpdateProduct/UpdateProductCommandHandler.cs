@@ -1,8 +1,8 @@
-﻿using Catalog.Application.Abstractions.Commands;
-using Catalog.Domain.Abstractions.Repositories;
+﻿using Catalog.Domain.Abstractions.Repositories;
 using Catalog.Domain.Entities;
 using Catalog.Domain.Shared.Errors;
 using Common.Primitives;
+using Common.Primitives.Commands;
 using Common.Primitives.ValueObjects;
 using ErrorOr;
 

@@ -1,25 +1,26 @@
-﻿namespace Common.Primitives;
+﻿namespace Common.Primitives.Domain;
 
-public abstract class Entity : IEquatable<Entity>
+public abstract class Entity<TId> : IEquatable<Entity<TId>>
+    where TId : struct
 {
-    public Guid Id { get; private init; }
+    public TId Id { get; private init; }
 
-    protected Entity(Guid id)
+    protected Entity(TId id)
     {
         Id = id;
     }
 
-    public static bool operator ==(Entity? first, Entity? second)
+    public static bool operator ==(Entity<TId> first, Entity<TId> second)
     {
         return first is not null && second is not null && first.Equals(second);
     }
 
-    public static bool operator !=(Entity? first, Entity? second)
+    public static bool operator !=(Entity<TId> first, Entity<TId> second)
     {
         return !(first == second);
     }
 
-    public override bool Equals(object? obj)
+    public override bool Equals(object obj)
     {
         if (obj is null)
         {
@@ -31,15 +32,15 @@ public abstract class Entity : IEquatable<Entity>
             return false;
         }
 
-        if (obj is not Entity entity)
+        if (obj is not Entity<TId> entity)
         {
             return false;
         }
 
-        return entity.Id == Id;
+        return entity.Id.Equals(Id);
     }
 
-    public bool Equals(Entity? other)
+    public bool Equals(Entity<TId> other)
     {
         if (other is null)
         {
@@ -51,7 +52,7 @@ public abstract class Entity : IEquatable<Entity>
             return false;
         }
 
-        return other.Id == Id;
+        return other.Id.Equals(Id);
     }
 
     public override int GetHashCode()

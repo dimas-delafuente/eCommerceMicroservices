@@ -1,9 +1,9 @@
-﻿using Common.Primitives;
+﻿using Common.Primitives.Domain;
 using Common.Primitives.ValueObjects;
 
 namespace Catalog.Domain.Entities;
 
-public class Product : Entity
+public class Product : AggregateRoot<Guid>
 {
     public string Name { get; private set; }
     public string Category { get; private set; }

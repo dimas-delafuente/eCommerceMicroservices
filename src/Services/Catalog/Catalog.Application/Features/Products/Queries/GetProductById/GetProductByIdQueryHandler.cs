@@ -1,7 +1,7 @@
-﻿using Catalog.Application.Abstractions.Queries;
-using Catalog.Domain.Abstractions.Repositories;
+﻿using Catalog.Domain.Abstractions.Repositories;
 using Catalog.Domain.Shared.Errors;
 using Common.Primitives;
+using Common.Primitives.Queries;
 using ErrorOr;
 
 namespace Catalog.Application.Features.Products.Queries.GetProductById;

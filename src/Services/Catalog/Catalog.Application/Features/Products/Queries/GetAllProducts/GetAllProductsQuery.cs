@@ -1,4 +1,4 @@
-﻿using Catalog.Application.Abstractions.Queries;
+﻿using Common.Primitives.Queries;
 using ErrorOr;
 
 namespace Catalog.Application.Features.Products.Queries.GetAllProducts;
