@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace Catalog.Infrastructure.Contexts;
 
-internal sealed class CatalogContext: ICatalogContext
+internal sealed class CatalogContext : ICatalogContext
 {
     private readonly IMongoClient _client;
     private readonly IMongoDatabase _database;
