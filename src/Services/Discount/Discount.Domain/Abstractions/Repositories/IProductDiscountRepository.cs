@@ -7,5 +7,5 @@ public interface IProductDiscountRepository
     Task<ProductDiscount?> GetByProductIdAsync(Guid productId);
     Task<bool> CreateAsync(ProductDiscount discount);
     Task<bool> UpdateAsync(ProductDiscount discount);
-    Task<bool> DeleteByProductIdAsync(Guid productId);
+    Task<bool> DeleteIdAsync(int productId);
 }

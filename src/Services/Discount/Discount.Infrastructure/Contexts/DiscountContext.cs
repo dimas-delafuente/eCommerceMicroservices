@@ -5,7 +5,7 @@ using Npgsql;
 
 namespace Discount.Infrastructure.Contexts;
 
-internal class DiscountContext
+internal class DiscountContext : IDiscountContext
 {
     private readonly string _connectionString;
 

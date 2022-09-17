@@ -9,9 +9,9 @@ namespace Discount.Infrastructure.Repositories;
 
 internal class ProductDiscountRepository : IProductDiscountRepository
 {
-    private readonly DiscountContext _discountContext;
+    private readonly IDiscountContext _discountContext;
 
-    public ProductDiscountRepository(DiscountContext discountContext)
+    public ProductDiscountRepository(IDiscountContext discountContext)
     {
         Ensure.NotNull(discountContext, nameof(discountContext));
         _discountContext = discountContext;
@@ -27,16 +27,16 @@ internal class ProductDiscountRepository : IProductDiscountRepository
             discount.Amount
         };
 
-        var result = await connection.ExecuteAsync(Query.ProductDiscount.Get, dbParams);
+        var result = await connection.ExecuteAsync(Query.ProductDiscount.Create, dbParams);
 
         return result > 0;
     }
 
-    public async Task<bool> DeleteByProductIdAsync(Guid productId)
+    public async Task<bool> DeleteIdAsync(int id)
     {
         using var connection = _discountContext.CreateConnection();
-        var dbParams = new { ProductId = productId };
-        var result = await connection.ExecuteAsync(Query.ProductDiscount.Create, dbParams);
+        var dbParams = new { Id = id };
+        var result = await connection.ExecuteAsync(Query.ProductDiscount.Delete, dbParams);
         return result > 0;
     }
 
@@ -45,7 +45,7 @@ internal class ProductDiscountRepository : IProductDiscountRepository
         using var connection = _discountContext.CreateConnection();
         var dbParams = new { ProductId = productId };
         return await connection
-            .QueryFirstOrDefaultAsync<ProductDiscount>(Query.ProductDiscount.Delete, dbParams);
+            .QueryFirstOrDefaultAsync<ProductDiscount>(Query.ProductDiscount.Get, dbParams);
     }
 
     public async Task<bool> UpdateAsync(ProductDiscount discount)
