@@ -1,6 +1,7 @@
 ﻿using Discount.Domain.Abstractions.Repositories;
 using Discount.Infrastructure.Connection;
 using Discount.Infrastructure.Contexts;
+using Discount.Infrastructure.DbUp;
 using Discount.Infrastructure.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IDiscountContext, DiscountContext>();
         services.AddScoped<IProductDiscountRepository, ProductDiscountRepository>();
 
+        DatabaseMigration.Migrate(dbSettings["ConnectionString"]);
         return services;
     }
 }
