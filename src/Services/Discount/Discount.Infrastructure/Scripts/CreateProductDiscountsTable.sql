@@ -5,5 +5,5 @@
 	Amount			NUMERIC
 );
 
-INSERT INTO ProductDiscounts(ProductId, Description, Amount) VALUES ('6f60bfe0-1582-44b0-b876-b93ae009e1e7', 'IPhone X Discount', 150);
-INSERT INTO ProductDiscounts(ProductId, Description, Amount) VALUES ('94a46ddf-6ae1-43f7-9faa-96f9966c183d', 'Samsung 10 Discount', 100);
+INSERT INTO ProductDiscounts(ProductId, Description, Amount) VALUES ('9483cd43-80be-4927-9c45-5e8bf9ad9794', 'IPhone X Discount', 150);
+INSERT INTO ProductDiscounts(ProductId, Description, Amount) VALUES ('79a9aeb0-fc1e-4225-9f41-f162a2f88e4d', 'Samsung 10 Discount', 100);

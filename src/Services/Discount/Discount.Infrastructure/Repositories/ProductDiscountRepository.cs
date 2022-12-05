@@ -48,6 +48,12 @@ internal class ProductDiscountRepository : IProductDiscountRepository
             .QueryFirstOrDefaultAsync<ProductDiscount>(Query.ProductDiscount.Get, dbParams);
     }
 
+    public async Task<IEnumerable<ProductDiscount>> GetAllAsync()
+    {
+        using var connection = _discountContext.CreateConnection();
+        return await connection.QueryAsync<ProductDiscount>(Query.ProductDiscount.GetAll);
+    }
+
     public async Task<bool> UpdateAsync(ProductDiscount discount)
     {
         using var connection = _discountContext.CreateConnection();

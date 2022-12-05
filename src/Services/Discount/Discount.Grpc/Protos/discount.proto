@@ -4,6 +4,7 @@ option csharp_namespace = "Discount.Grpc.Protos";
 
 service ProductDiscountProtoService {
 	rpc GetProductDiscount(GetProductDiscountRequest) returns (ProductDiscount);
+	rpc GetAllProductDiscounts(EmptyRequest) returns (GetAllProductDiscountsResponse);
 
 	rpc CreateProductDiscount(CreateProductDiscountRequest) returns (ProductDiscount);
 	rpc UpdateProductDiscount(UpdateProductDiscountRequest) returns (ProductDiscount);
@@ -34,4 +35,13 @@ message DeleteProductDiscountRequest {
 
 message DeleteProductDiscountResponse {
 	bool deleted = 1;
+}
+
+message GetAllProductDiscountsResponse {
+	repeated ProductDiscount productDiscounts = 1;
+}
+
+
+message EmptyRequest{
+
 }

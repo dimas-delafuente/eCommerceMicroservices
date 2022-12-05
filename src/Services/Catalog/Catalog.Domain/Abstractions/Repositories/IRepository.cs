@@ -1,9 +1,8 @@
 ﻿using Common.Primitives.Domain;
 
-namespace Catalog.Domain.Abstractions.Repositories
+namespace Catalog.Domain.Abstractions.Repositories;
+
+public interface IRepository<T>
+    where T : Entity<Guid>
 {
-    public interface IRepository<T>
-        where T : Entity<Guid>
-    {
-    }
 }

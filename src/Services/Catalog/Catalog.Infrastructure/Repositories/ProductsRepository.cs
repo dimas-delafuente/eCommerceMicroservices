@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace Catalog.Infrastructure.Repositories;
 
-internal class ProductsRepository : RepositoryBase, IProductsRepository
+internal class ProductsRepository : DatabaseRepositoryBase, IProductsRepository
 {
     public ProductsRepository(ICatalogContext catalogContext) : base(catalogContext)
     {
