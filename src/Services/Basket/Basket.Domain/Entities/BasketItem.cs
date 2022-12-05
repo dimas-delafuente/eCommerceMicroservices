@@ -1,4 +1,6 @@
-﻿namespace Basket.Domain.Entities;
+﻿using Common.Primitives;
+
+namespace Basket.Domain.Entities;
 
 public class BasketItem
 {
@@ -16,5 +18,12 @@ public class BasketItem
         ProductId = productId;
         Quantity = quantity;
         Price = price;
+    }
+
+    public void ApplyDiscount(decimal discount)
+    {
+        Ensure.That(discount > 0, Errors.Errors.ProductDiscount.Empty.Description);
+        Ensure.That(discount > Price, Errors.Errors.ProductDiscount.ExceedsPrice.Description);
+        Price -= discount;
     }
 }

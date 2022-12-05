@@ -43,4 +43,13 @@ public class BasketController : ApiController
         var result = await _basketManager.SetBasket(command);
         return Result(result);
     }
+
+    [HttpPost("{id}/checkout", Name = "Checkout")]
+    [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
+    public async Task<IActionResult> Checkout([FromRoute] Guid id)
+    {
+        var result = await _basketManager.Checkout(id);
+        return Result(result);
+    }
 }

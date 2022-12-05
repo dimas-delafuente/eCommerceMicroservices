@@ -9,14 +9,11 @@ namespace Catalog.Application.Features.Products.Queries.GetProductById;
 internal class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdQuery, ErrorOr<GetProductByIdQueryResult>>
 {
     private readonly IProductsRepository _productsRepository;
-    private readonly IProductDiscountRepository _productDiscountRepository;
 
-    public GetProductByIdQueryHandler(IProductsRepository productsRepository, IProductDiscountRepository productDiscountRepository)
+    public GetProductByIdQueryHandler(IProductsRepository productsRepository)
     {
         Ensure.NotNull(productsRepository, nameof(productsRepository));
-        Ensure.NotNull(productDiscountRepository, nameof(productDiscountRepository));
         _productsRepository = productsRepository;
-        _productDiscountRepository = productDiscountRepository;
     }
 
     public async Task<ErrorOr<GetProductByIdQueryResult>> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
@@ -25,12 +22,6 @@ internal class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdQuery, E
         if (product is null)
         {
             return Errors.Product.NotFound;
-        }
-
-        var productDiscount = await _productDiscountRepository.GetByProductIdAsync(product.Id);
-        if (productDiscount is not null)
-        {
-            product.SetDiscount(productDiscount);
         }
 
         return new GetProductByIdQueryResult(product);

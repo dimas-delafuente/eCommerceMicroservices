@@ -14,9 +14,7 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Catalog.API", Version = "v1" });
 });
 
-builder.Services.AddInfrastructure(
-    builder.Configuration.GetSection("DatabaseSettings"),
-    builder.Configuration.GetSection("DiscountGrpcSettings"));
+builder.Services.AddInfrastructure(builder.Configuration.GetSection("DatabaseSettings"));
 
 builder.Services.AddApplication();
 

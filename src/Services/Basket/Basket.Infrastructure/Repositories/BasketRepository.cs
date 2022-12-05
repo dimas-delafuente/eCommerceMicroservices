@@ -15,7 +15,7 @@ internal class BasketRepository : IBasketRepository
         _redisCache = cache;
     }
 
-    public async Task DeteleAsync(Guid id)
+    public async Task DeleteAsync(Guid id)
     {
         await _redisCache.RemoveAsync(id.ToString());
     }

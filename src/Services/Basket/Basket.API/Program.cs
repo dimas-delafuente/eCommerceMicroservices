@@ -11,7 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplication();
-builder.Services.AddInfrastructure(builder.Configuration.GetSection("CacheSettings"));
+builder.Services.AddInfrastructure(builder.Configuration.GetSection("CacheSettings"),
+        builder.Configuration.GetSection("DiscountGrpcSettings"));
 
 var app = builder.Build();
 
