@@ -5,7 +5,12 @@ public abstract class AggregateRoot<TId> : Entity<TId>
 {
     private readonly List<IDomainEvent> _events = new();
 
-    public IReadOnlyCollection<IDomainEvent> Events => _events;
+    public IReadOnlyCollection<IDomainEvent> Events => _events.ToList();
+
+    protected AggregateRoot() : base(default(TId))
+    {
+
+    }
 
     protected AggregateRoot(TId id) : base(id)
     {

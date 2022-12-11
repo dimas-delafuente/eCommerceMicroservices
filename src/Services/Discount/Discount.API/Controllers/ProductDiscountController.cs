@@ -18,7 +18,6 @@ public class ProductDiscountController : ApiController
         _mediator = mediator;
     }
 
-    // GET api/v1/[controller]/id
     [HttpGet("{productId}", Name = "GetProductDiscount")]
     [ProducesResponseType(typeof(GetProductDiscountQueryResult), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]

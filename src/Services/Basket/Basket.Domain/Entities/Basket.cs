@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Basket.Domain.Entities;
+﻿namespace Basket.Domain.Entities;
 
 public class Basket
 {
@@ -9,11 +7,6 @@ public class Basket
     public IReadOnlyList<BasketItem> Items { get; set; }
 
     public decimal TotalPrice => Items.Sum(i => i.Price);
-
-    public Basket()
-    {
-
-    }
 
     public Basket(Guid id)
     {

@@ -7,6 +7,11 @@ public sealed class Currency : Enumeration
 
     public static readonly Currency Euro = new(1, "EUR");
 
+    private Currency() : base(Euro.Id, Euro.Name)
+    {
+
+    }
+
     public Currency(int id, string code) : base(id, code)
     {
         Ensure.Positive(id, nameof(id));
