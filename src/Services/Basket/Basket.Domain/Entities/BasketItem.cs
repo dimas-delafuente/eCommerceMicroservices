@@ -8,7 +8,7 @@ public class BasketItem
     public int Quantity { get; set; }
     public decimal Price { get; set; }
 
-    public BasketItem()
+    private BasketItem()
     {
 
     }
@@ -22,8 +22,8 @@ public class BasketItem
 
     public void ApplyDiscount(decimal discount)
     {
-        Ensure.That(discount > 0, Errors.Errors.ProductDiscount.Empty.Description);
-        Ensure.That(discount > Price, Errors.Errors.ProductDiscount.ExceedsPrice.Description);
+        Ensure.That(discount >= 0, Errors.Errors.ProductDiscount.Empty.Description);
+        Ensure.That(discount <= Price, Errors.Errors.ProductDiscount.ExceedsPrice.Description);
         Price -= discount;
     }
 }

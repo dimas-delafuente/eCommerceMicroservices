@@ -12,7 +12,7 @@ public class ProductDiscount : Entity<Guid>
     {
         Description = description;
 
-        Ensure.That<ArgumentException>(amount > 0, "Amount must be positive.");
+        Ensure.That<ArgumentException>(amount >= 0, "Amount cannot be negative.");
         Amount = amount;
     }
 

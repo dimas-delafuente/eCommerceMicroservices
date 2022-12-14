@@ -1,5 +1,6 @@
 using Basket.Application;
 using Basket.Infrastructure;
+using EventBus.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration.GetSection("CacheSettings"),
         builder.Configuration.GetSection("DiscountGrpcSettings"));
+
+builder.Services.AddEventBus(opt =>
+{
+    opt.Host = builder.Configuration.GetSection("EventBusSettings")["HostAddress"];
+});
 
 var app = builder.Build();
 

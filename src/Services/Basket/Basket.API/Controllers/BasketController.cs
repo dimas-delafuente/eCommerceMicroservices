@@ -47,9 +47,9 @@ public class BasketController : ApiController
     [HttpPost("{id}/checkout", Name = "Checkout")]
     [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.NotFound)]
-    public async Task<IActionResult> Checkout([FromRoute] Guid id)
+    public async Task<IActionResult> Checkout([FromRoute] Guid id, [FromBody] CheckoutBasketCommand checkoutBasketCommand)
     {
-        var result = await _basketManager.Checkout(id);
+        var result = await _basketManager.Checkout(id, checkoutBasketCommand);
         return Result(result);
     }
 }

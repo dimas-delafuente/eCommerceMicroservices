@@ -1,8 +1,6 @@
 using Orders.API.Extensions;
 using Orders.Application;
 using Orders.Infrastructure;
-using Orders.Infrastructure.BackgroundJobs;
-using Quartz;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,25 +13,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplication();
 
-var secti = builder.Configuration.GetSection("EmailSettings");
 builder.Services.AddInfrastructure(builder.Configuration);
 
-builder.Services.AddQuartz(configure =>
-{
-    var jobKey = new JobKey(nameof(ProcessOutboxMessageJob));
-    configure
-        .AddJob<ProcessOutboxMessageJob>(jobKey)
-        .AddTrigger(
-            trigger => trigger
-                .ForJob(jobKey)
-                .WithSimpleSchedule(schedule =>
-                    schedule.WithIntervalInSeconds(10)
-                            .RepeatForever()));
+builder.Services.AddBackgroundJobs();
 
-    configure.UseMicrosoftDependencyInjectionJobFactory();
-});
+builder.Services.RegisterEventBus(builder.Configuration);
 
-builder.Services.AddQuartzHostedService();
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 

@@ -35,10 +35,11 @@ public class ProductDiscountService : ProductDiscountProtoService.ProductDiscoun
 
     public override async Task<ProductDiscount> GetProductDiscount(GetProductDiscountRequest request, ServerCallContext context)
     {
-        var result = await _mediator.Send(new GetProductDiscountQuery(Guid.Parse(request.ProductId)));
+        var productId = Guid.Parse(request.ProductId);
+        var result = await _mediator.Send(new GetProductDiscountQuery(productId));
 
         return result.IsError
-            ? throw new RpcException(new Status(StatusCode.NotFound, result.FirstError.Description))
+            ? Domain.Entities.ProductDiscount.Create(productId, "No discount.", 0).ToProtoModel()
             : result.Value.ProductDiscount.ToProtoModel();
     }
 
