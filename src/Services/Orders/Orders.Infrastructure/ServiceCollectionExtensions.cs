@@ -22,8 +22,8 @@ public static class ServiceCollectionExtensions
         services.AddDbContext<OrdersContext>(
             (sp, optionsBuilder) =>
         {
-            var autidableInterceptor = sp.GetService<AuditEntityInterceptor>();
-            var outboxMessagesInterceptor = sp.GetService<DomainEventToOutboxMessageInterceptor>();
+            var autidableInterceptor = sp.GetService<AuditEntityInterceptor>()!;
+            var outboxMessagesInterceptor = sp.GetService<DomainEventToOutboxMessageInterceptor>()!;
 
             optionsBuilder.UseSqlServer(configuration.GetSection("DatabaseSettings")["ConnectionString"])
                 .AddInterceptors(autidableInterceptor)

@@ -53,10 +53,7 @@ public abstract class Enumeration : IComparable
     {
         var matchingItem = GetAll<T>().FirstOrDefault(predicate);
 
-        if (matchingItem == null)
-            throw new InvalidOperationException($"'{value}' is not a valid {description} in {typeof(T)}");
-
-        return matchingItem;
+        return matchingItem ?? throw new InvalidOperationException($"'{value}' is not a valid {description} in {typeof(T)}");
     }
 
     public int CompareTo(object? other) => Id.CompareTo(((Enumeration)other).Id);

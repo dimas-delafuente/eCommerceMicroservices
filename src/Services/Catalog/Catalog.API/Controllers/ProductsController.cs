@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Catalog.API.Contracts;
 using Catalog.Application.Features.Products.Commands.CreateProduct;
 using Catalog.Application.Features.Products.Commands.DeleteProduct;
 using Catalog.Application.Features.Products.Commands.UpdateProduct;
@@ -19,7 +20,6 @@ public class ProductsController : ApiController
         _mediator = mediator;
     }
 
-    // GET api/v1/[controller]
     [HttpGet(Name = "GetProducts")]
     [ProducesResponseType(typeof(GetAllProductsQueryResult), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetAllProducts([FromQuery] GetAllProductsQuery query)
@@ -28,7 +28,6 @@ public class ProductsController : ApiController
         return Result(result);
     }
 
-    // GET api/v1/[controller]/id
     [HttpGet("{id}", Name = "GetProduct")]
     [ProducesResponseType(typeof(GetProductByIdQueryResult), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
@@ -42,11 +41,28 @@ public class ProductsController : ApiController
     [HttpPost(Name = "CreateProduct")]
     [ProducesResponseType(typeof(CreateProductCommandResult), (int)HttpStatusCode.Created)]
     [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
-    public async Task<IActionResult> CreateProduct([FromBody] CreateProductCommand command)
+    public async Task<IActionResult> CreateProduct(
+        [FromBody] CreateProductRequest request,
+        [FromHeader(Name = "X-Idempotency-Key")] string requestId)
     {
+        if (!Guid.TryParse(requestId, out var parsedId))
+        {
+            return BadRequest();
+        }
+
+        var command = new CreateProductCommand(
+            parsedId,
+            request.Name,
+            request.Category,
+            request.Summary,
+            request.Description,
+            request.ImageFile,
+            request.Price,
+            request.Currency);
+
         var result = await _mediator.Send(command);
         return result.Match(
-            product => CreatedAtRoute("GetProduct", new { id = product.Product.Id }, product),
+            product => Created("", null), //TODO: Find a way to retrieve the idempotent response so we can get the Id
             errors => Problem(errors));
     }
 

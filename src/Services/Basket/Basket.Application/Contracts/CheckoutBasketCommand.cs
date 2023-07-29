@@ -4,7 +4,6 @@ namespace Basket.Application.Contracts;
 
 public sealed record CheckoutBasketCommand(
     string UserName,
-    decimal TotalPrice,
     string FirstName,
     string LastName,
     string EmailAddress,
@@ -21,10 +20,10 @@ public sealed record CheckoutBasketCommand(
 public static class CheckoutBasketCommandExtensions
 {
 
-    public static BasketCheckoutEvent ToIntegrationEvent(this CheckoutBasketCommand command)
+    public static BasketCheckoutEvent ToIntegrationEvent(this CheckoutBasketCommand command, decimal totalPrice)
     {
         return new BasketCheckoutEvent(command.UserName,
-                                       command.TotalPrice,
+                                       totalPrice,
                                        command.FirstName,
                                        command.LastName,
                                        command.EmailAddress,

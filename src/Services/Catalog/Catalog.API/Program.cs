@@ -1,6 +1,7 @@
 using Catalog.API.Errors;
 using Catalog.Application;
 using Catalog.Infrastructure;
+using Common.Idempotency;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,11 +15,11 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Catalog.API", Version = "v1" });
 });
 
+
 builder.Services.AddInfrastructure(builder.Configuration.GetSection("DatabaseSettings"));
-
 builder.Services.AddApplication();
-
 builder.Services.AddSingleton<ProblemDetailsFactory, CatalogProblemDetailsFactory>();
+builder.Services.AddIdempotency(builder.Configuration.GetSection("IdempotencyDbSettings"));
 
 var app = builder.Build();
 

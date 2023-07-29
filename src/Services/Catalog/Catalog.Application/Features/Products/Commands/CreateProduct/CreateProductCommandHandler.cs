@@ -29,6 +29,6 @@ internal class CreateProductCommandHandler : ICommandHandler<CreateProductComman
 
         await _productsRepository.CreateProductAsync(product);
 
-        return new CreateProductCommandResult(product);
+        return new CreateProductCommandResult(product.Id);
     }
 }

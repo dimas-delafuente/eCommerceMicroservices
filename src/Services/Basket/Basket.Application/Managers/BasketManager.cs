@@ -41,7 +41,7 @@ internal class BasketManager : IBasketManager
             return Errors.Basket.Empty;
         }
 
-        var eventMessage = checkoutBasketCommand.ToIntegrationEvent();
+        var eventMessage = checkoutBasketCommand.ToIntegrationEvent(basket.TotalPrice);
         await _eventBus.Publish(eventMessage);
 
         await DeleteBasket(basketId);

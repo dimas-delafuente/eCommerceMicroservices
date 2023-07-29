@@ -20,7 +20,7 @@ public static class ServiceCollectionExtensions
 
         services.AddGrpcClient<ProductDiscountProtoService.ProductDiscountProtoServiceClient>(opt =>
         {
-            opt.Address = new Uri(discountGrpcSettings["DiscountUrl"]);
+            opt.Address = new Uri(discountGrpcSettings["DiscountUrl"]!);
         });
 
 
