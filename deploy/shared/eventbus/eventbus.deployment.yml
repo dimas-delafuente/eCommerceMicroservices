@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eventbus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: eventbus
+  template:
+    metadata:
+      labels:
+        component: eventbus
+    spec:
+      containers:
+        - name: eventbus
+          image: rabbitmq:3-management-alpine
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5672

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discount-grpc
+  labels:
+    component: discount-grpc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: discount-grpc
+  template:
+    metadata:
+      labels:
+        component: discount-grpc
+    spec:
+      containers:
+        - name: discount-grpc
+          image: discountgrpc:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8003
+          env:
+            - name: DatabaseSettings__ConnectionString
+              valueFrom:
+                secretKeyRef:
+                  name: postgreshost
+                  key: POSTGRESHOST
