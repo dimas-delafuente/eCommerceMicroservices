@@ -1,4 +1,9 @@
+using Common.Logging;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders();
+builder.Host.UseSerilog(builder.Configuration);
 
 // Add services to the container.
 

@@ -1,7 +1,11 @@
+using Common.Logging;
 using Discount.Application;
 using Discount.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders();
+builder.Host.UseSerilog(builder.Configuration);
 
 // Add services to the container.
 

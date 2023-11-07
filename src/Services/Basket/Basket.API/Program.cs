@@ -1,8 +1,12 @@
 using Basket.Application;
 using Basket.Infrastructure;
+using Common.Logging;
 using EventBus.Core;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders();
+builder.Host.UseSerilog(builder.Configuration);
 
 // Add services to the container.
 

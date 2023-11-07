@@ -2,9 +2,14 @@ using Catalog.API.Errors;
 using Catalog.Application;
 using Catalog.Infrastructure;
 using Common.Idempotency;
+using Common.Logging;
+
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders();
+builder.Host.UseSerilog(builder.Configuration);
 
 // Add services to the container.
 

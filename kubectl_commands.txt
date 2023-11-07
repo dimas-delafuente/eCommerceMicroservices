@@ -1,0 +1,5 @@
+kubectl create secret generic postgreshost --from-literal POSTGRESHOST="Server=discount-db;Port=5432;Database=DiscountDb;User Id=admin;Password=admin_postgres;"
+kubectl create secret generic postgreshost --from-literal POSTGRESHOST="Server=discount-db;Port=5432;Database=DiscountDb;User Id=admin;Password=admin_postgres;"
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+kubectl delete all --all --namespace default

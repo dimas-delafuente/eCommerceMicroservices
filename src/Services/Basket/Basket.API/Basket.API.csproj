@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common.Logging\Common.Logging.csproj" />
     <ProjectReference Include="..\..\..\Common\EventBus.Core\EventBus.Core.csproj" />
     <ProjectReference Include="..\..\..\Common\EventBus.Messages\EventBus.Messages.csproj" />
     <ProjectReference Include="..\Basket.Application\Basket.Application.csproj" />
