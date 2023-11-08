@@ -5,6 +5,7 @@ using Basket.Domain.Errors;
 using Common.Primitives;
 using ErrorOr;
 using EventBus.Core.Services;
+using Microsoft.Extensions.Logging;
 
 namespace Basket.Application.Managers;
 
@@ -13,19 +14,23 @@ internal class BasketManager : IBasketManager
     private readonly IBasketRepository _basketRepository;
     private readonly IProductDiscountRepository _discountRepository;
     private readonly IEventBus _eventBus;
+    private readonly ILogger<BasketManager> _logger;
 
     public BasketManager(
         IBasketRepository basketRepository,
         IProductDiscountRepository discountRepository,
-        IEventBus eventBus)
+        IEventBus eventBus,
+        ILogger<BasketManager> logger)
     {
         Ensure.NotNull(basketRepository, nameof(basketRepository));
         Ensure.NotNull(discountRepository, nameof(discountRepository));
         Ensure.NotNull(eventBus, nameof(eventBus));
+        Ensure.NotNull(logger, nameof(logger));
 
         _basketRepository = basketRepository;
         _discountRepository = discountRepository;
         _eventBus = eventBus;
+        _logger = logger;
     }
 
     public async Task<ErrorOr<Domain.Entities.Basket>> Checkout(Guid basketId, CheckoutBasketCommand checkoutBasketCommand)
@@ -75,6 +80,10 @@ internal class BasketManager : IBasketManager
             }
         }
 
-        return await _basketRepository.UpdateBasketAsync(basket);
+        var result = await _basketRepository.UpdateBasketAsync(basket);
+
+        _logger.LogInformation("New basket created. Id {basketId}.", result.Id);
+
+        return result;
     }
 }

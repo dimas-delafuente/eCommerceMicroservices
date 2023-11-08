@@ -79,7 +79,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
       - "DatabaseSettings:ConnectionString=mongodb://catalogdb:27017"
-      - "IdempotencyDbSettings:ConnectionString=Server=idempotencydb;Database=IdempotencyDb;User Id=sa;Password=SwN12345678;TrustServerCertificate=True"  
+      - "IdempotencyDbSettings:ConnectionString=Server=idempotencydb;Database=IdempotencyDb;User Id=sa;Password=SwN12345678;TrustServerCertificate=True"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - catalogdb
       - idempotencydb
@@ -97,6 +98,7 @@ services:
       - "CacheSettings:ConnectionString=basketdb:6379"
       - "DiscountGrpcSettings:DiscountUrl=http://discount.grpc"
       - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - basketdb
       - rabbitmq
@@ -111,6 +113,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=admin_postgres;"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - discountdb
     ports:
@@ -121,6 +124,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=admin_postgres;"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - discountdb
     ports:
@@ -132,6 +136,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=SwN12345678;TrustServerCertificate=True"
       - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - orderdb
       - rabbitmq
@@ -142,6 +147,7 @@ services:
     container_name: ocelotapigw
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - catalog.api
       - basket.api
@@ -167,7 +173,7 @@ services:
     container_name: kibana
     restart: always
     environment:
-      - ELASTICSEARCH_URL=http://localhost:9200
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
     ports:
       - "5601:5601"
     depends_on:
