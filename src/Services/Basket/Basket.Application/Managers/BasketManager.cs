@@ -82,8 +82,8 @@ internal class BasketManager : IBasketManager
 
         var result = await _basketRepository.UpdateBasketAsync(basket);
 
-        _logger.LogInformation("New basket created. Id {basketId}.", result.Id);
+        _logger.LogInformation("New basket created. Id {basketId}.", basket.Id);
 
-        return result;
+        return basket;
     }
 }

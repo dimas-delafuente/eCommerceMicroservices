@@ -10,6 +10,7 @@ WORKDIR /src
 COPY ["Directory.Build.props", "."]
 COPY ["src/Services/Basket/Basket.API/Basket.API.csproj", "src/Services/Basket/Basket.API/"]
 COPY ["src/Common/Common.Logging/Common.Logging.csproj", "src/Common/Common.Logging/"]
+COPY ["src/Common/Common.Tracing/Common.Tracing.csproj", "src/Common/Common.Tracing/"]
 COPY ["src/Common/EventBus.Core/EventBus.Core.csproj", "src/Common/EventBus.Core/"]
 COPY ["src/Common/EventBus.Messages/EventBus.Messages.csproj", "src/Common/EventBus.Messages/"]
 COPY ["src/Services/Basket/Basket.Application/Basket.Application.csproj", "src/Services/Basket/Basket.Application/"]

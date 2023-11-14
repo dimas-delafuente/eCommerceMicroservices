@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common.Tracing\Common.Tracing.csproj" />
     <ProjectReference Include="..\Basket.Domain\Basket.Domain.csproj" />
   </ItemGroup>
 

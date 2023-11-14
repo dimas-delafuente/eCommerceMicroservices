@@ -1,6 +1,7 @@
 using Basket.Application;
 using Basket.Infrastructure;
 using Common.Logging;
+using Common.Tracing;
 using EventBus.Core;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration.GetSection("CacheSettings"),
         builder.Configuration.GetSection("DiscountGrpcSettings"));
+
+builder.Services.AddTracing(builder.Environment.ApplicationName);
 
 builder.Services.AddEventBus(opt =>
 {
