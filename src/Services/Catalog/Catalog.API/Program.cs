@@ -3,7 +3,7 @@ using Catalog.Application;
 using Catalog.Infrastructure;
 using Common.Idempotency;
 using Common.Logging;
-
+using Common.Tracing;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +25,8 @@ builder.Services.AddInfrastructure(builder.Configuration.GetSection("DatabaseSet
 builder.Services.AddApplication();
 builder.Services.AddSingleton<ProblemDetailsFactory, CatalogProblemDetailsFactory>();
 builder.Services.AddIdempotency(builder.Configuration.GetSection("IdempotencyDbSettings"));
+
+builder.Services.AddTracing(builder.Environment.ApplicationName);
 
 var app = builder.Build();
 

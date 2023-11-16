@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Common.Logging\Common.Logging.csproj" />
+    <ProjectReference Include="..\..\..\Common\Common.Tracing\Common.Tracing.csproj" />
     <ProjectReference Include="..\..\..\Common\EventBus.Core\EventBus.Core.csproj" />
     <ProjectReference Include="..\Orders.Application\Orders.Application.csproj" />
     <ProjectReference Include="..\Orders.Domain\Orders.Domain.csproj" />

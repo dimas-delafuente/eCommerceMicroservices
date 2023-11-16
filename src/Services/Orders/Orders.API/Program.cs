@@ -1,4 +1,5 @@
 using Common.Logging;
+using Common.Tracing;
 using Orders.API.Extensions;
 using Orders.Application;
 using Orders.Infrastructure;
@@ -24,6 +25,8 @@ builder.Services.AddBackgroundJobs();
 builder.Services.RegisterEventBus(builder.Configuration);
 
 builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddTracing(builder.Environment.ApplicationName);
 
 var app = builder.Build();
 

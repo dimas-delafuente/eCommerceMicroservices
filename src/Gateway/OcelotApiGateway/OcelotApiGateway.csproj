@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.Logging\Common.Logging.csproj" />
+    <ProjectReference Include="..\..\Common\Common.Tracing\Common.Tracing.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 using Common.Logging;
+using Common.Tracing;
 using Discount.Application;
 using Discount.Grpc.Services;
 using Discount.Infrastructure;
@@ -16,6 +17,8 @@ builder.Services.AddGrpc();
 
 builder.Services.AddInfrastructure(builder.Configuration.GetSection("DatabaseSettings"));
 builder.Services.AddApplication();
+
+builder.Services.AddTracing(builder.Environment.ApplicationName);
 
 var app = builder.Build();
 

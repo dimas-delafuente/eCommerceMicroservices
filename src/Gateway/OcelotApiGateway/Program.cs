@@ -1,4 +1,5 @@
 using Common.Logging;
+using Common.Tracing;
 using Ocelot.Cache.CacheManager;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
@@ -15,6 +16,8 @@ builder.Services.AddOcelot()
     {
         x.WithDictionaryHandle();
     });
+
+builder.Services.AddTracing(builder.Environment.ApplicationName);
 
 var app = builder.Build();
 

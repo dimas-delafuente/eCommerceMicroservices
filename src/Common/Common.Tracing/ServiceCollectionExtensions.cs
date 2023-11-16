@@ -17,6 +17,7 @@ public static class ServiceCollectionExtensions
             .WithTracing(tracing => tracing
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
+                .AddGrpcClientInstrumentation()
                 .AddOtlpExporter(opt =>
                 {
                     opt.Endpoint = new Uri("http://jaeger:4317");
