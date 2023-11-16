@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: basket-db
+  labels:
+    component: basket-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: basket-db
+  template:
+    metadata:
+      labels:
+        component: basket-db
+    spec:
+      containers:
+        - name: basket-db
+          image: redis:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 6379

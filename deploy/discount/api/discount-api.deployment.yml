@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discount-api
+  labels:
+    component: discount-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: discount-api
+  template:
+    metadata:
+      labels:
+        component: discount-api
+    spec:
+      containers:
+        - name: discount-api
+          image: discountapi:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8002
+          env:
+            - name: DatabaseSettings__ConnectionString
+              valueFrom:
+                secretKeyRef:
+                  name: postgreshost
+                  key: POSTGRESHOST

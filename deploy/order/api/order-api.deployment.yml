@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-api
+  labels:
+    component: order-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: order-api
+  template:
+    metadata:
+      labels:
+        component: order-api
+    spec:
+      containers:
+        - name: order-api
+          image: orderapi:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8004
+          env:
+            - name: DatabaseSettings__ConnectionString
+              value: order-db
+            - name: EventBusSettings__HostAddress
+              value: eventbus

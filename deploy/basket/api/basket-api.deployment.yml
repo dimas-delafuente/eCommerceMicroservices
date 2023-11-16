@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: basket-api
+  labels:
+    component: basket-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: basket-api
+  template:
+    metadata:
+      labels:
+        component: basket-api
+    spec:
+      containers:
+        - name: basket-api
+          image: basketapi:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8081
+          env:
+            - name: CacheSettings__ConnectionString
+              value: basket-db
+            - name: EventBusSettings__HostAddress
+              value: eventbus
+            - name: DiscountGrpcSettings__DiscountUrl
+              value: discount-grpc

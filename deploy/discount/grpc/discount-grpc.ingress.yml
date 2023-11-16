@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: discount-grpc
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+        - backend:
+            service:
+              name: discount-grpc
+              port:
+                number: 8003
+          path: /discountgrpc(/|$)(.*)
+          pathType: Prefix

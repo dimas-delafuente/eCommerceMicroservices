@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog-db
+  labels:
+    component: catalog-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: catalog-db
+  template:
+    metadata:
+      labels:
+        component: catalog-db
+    spec:
+      volumes:
+        - name: mongodb-storage
+          persistentVolumeClaim:
+            claimName: catalog-db-pvc
+      containers:
+        - name: catalog-db
+          image: mongo:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongodb-storage
+              mountPath: /data/db

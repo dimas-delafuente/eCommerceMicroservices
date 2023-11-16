@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog-api
+  labels:
+    component: catalog-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: catalog-api
+  template:
+    metadata:
+      labels:
+        component: catalog-api
+    spec:
+      containers:
+        - name: catalog-api
+          image: catalogapi:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DatabaseSettings__ConnectionString
+              value: mongodb://catalog-db:27017
