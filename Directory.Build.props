@@ -1,3 +1,11 @@
 <Project>
+	<PropertyGroup>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Label="SDK Versions">
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
 
 </Project>

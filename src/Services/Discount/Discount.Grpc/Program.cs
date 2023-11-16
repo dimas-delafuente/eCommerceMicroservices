@@ -1,8 +1,12 @@
+using Common.Logging;
 using Discount.Application;
 using Discount.Grpc.Services;
 using Discount.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders();
+builder.Host.UseSerilog(builder.Configuration);
 
 // Additional configuration is required to successfully run gRPC on macOS.
 // For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682

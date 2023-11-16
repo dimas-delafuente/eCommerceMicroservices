@@ -1,8 +1,12 @@
+using Common.Logging;
 using Orders.API.Extensions;
 using Orders.Application;
 using Orders.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders();
+builder.Host.UseSerilog(builder.Configuration);
 
 // Add services to the container.
 
